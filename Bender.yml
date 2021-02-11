@@ -15,6 +15,7 @@ sources:
     - rtl/include/apu_core_package.sv
     - rtl/include/riscv_defines.sv
     - rtl/include/riscv_tracer_defines.sv
+    - rtl/register_file_test_wrap.sv
     - rtl/riscv_alu.sv
     - rtl/riscv_alu_basic.sv
     - rtl/riscv_alu_div.sv
@@ -37,22 +38,17 @@ sources:
     - rtl/riscv_fetch_fifo.sv
     - rtl/riscv_L0_buffer.sv
     - rtl/riscv_pmp.sv
-    - target: any(rtl, asic)
+    - target: all(synthesis, not(fpga))
       files:
-        - rtl/register_file_test_wrap.sv
         - rtl/riscv_register_file_latch.sv
-    - target: not(asic)
+    - target: rtl
       files:
         - rtl/riscv_register_file.sv
     - target: all(rtl, not(synthesis))
       files:
         - rtl/riscv_tracer.sv
-    - target: verilator
-      files:
-        - rtl/riscv_register_file.sv
     - target: xilinx
       files:
-        - rtl/register_file_test_wrap.sv
         - rtl/riscv_register_file.sv
     # TODO: tb_riscv
 
